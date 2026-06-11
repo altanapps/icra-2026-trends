@@ -8,7 +8,7 @@ Six things stood out.
 
 ## 1. Diffusion policies won — and the field has already moved on to fixing them
 
-Two years ago the debate was diffusion policy vs. ACT vs. plain behavior cloning. That debate is over. Nobody at ICRA 2026 is asking whether generative action policies work — they're the assumed default, and the papers are about patching them: one hits 95% of state-of-the-art performance at 5% of the training cost, another matches diffusion planners with ~100x faster inference, and flow matching is visibly eating diffusion from below.
+Two years ago the debate was diffusion policy vs. ACT vs. plain behavior cloning. That debate is over. Nobody at ICRA 2026 is asking whether generative action policies work — they're the assumed default, and the papers are about patching them: one hits 95% of state-of-the-art performance at 5% of the training time, another matches diffusion planners with ~100x faster inference, and flow matching is visibly eating diffusion from below.
 
 That's what winning looks like in research. When a method stops being the headline and becomes the infrastructure everyone else patches, it won.
 
@@ -16,25 +16,25 @@ That's what winning looks like in research. When a method stops being the headli
 
 The 2023 dream was that one big model would absorb the whole robot, end to end. The 2026 reality, consistent across every slice of the conference: foundation models handle the semantics, and classical machinery keeps the guarantees. The LLM proposes a plan; a symbolic planner or scene-graph verifier checks it before the robot moves. The model is in the loop — but firewalled.
 
-And here's the part nobody tweets: the same conference published the sharpest evidence yet that VLAs are fragile. A single adversarially textured object cut state-of-the-art VLA success rates by 31–40%. Visual clutter alone cut up to 34%. NVIDIA's own GR00T fell from 90% to 4.5% when tasks went multi-step.
+And here's the part nobody tweets: the same conference published the sharpest evidence yet that VLAs are fragile. A single adversarially textured object cut state-of-the-art VLA success rates by 31–40%. Visual clutter alone cut up to 34%. NVIDIA's flagship GR00T fell from 90% to 4.5% when tasks went multi-step — measured by independent evaluators, not by NVIDIA. And it's not just exotic attacks: ordinary observation shift from a preceding skill drops OpenVLA by 54%, with no standard remedy working.
 
 The field is standardizing on VLAs while simultaneously proving they memorize more than they understand. If you're betting a company on generalist robot policies, hold both of those facts at once.
 
 ## 3. Data quality beat data scale
 
-The 2024 default was "collect more teleop demos and train bigger." The 2026 default: never pay for teleop if you can avoid it. Microsoft turned a million episodes of ordinary human hand video into robot training data with zero annotation. Meta trained dexterous manipulation from smart-glasses recordings — no robot data at all. NVIDIA crowdsourced 7,500 demos across 9 countries in 5 days using smartphones.
+The default heading into this year was "collect more teleop demos and train bigger." The fast-growing 2026 recipe: don't pay for teleop if you can avoid it. Microsoft turned a million episodes of ordinary human hand video into robot training data with zero annotation. A CMU–Meta team trained dexterous manipulation from Aria smart-glasses recordings — no robot data at all. A Georgia Tech–NVIDIA team crowdsourced 7,500+ demos across 9 countries in 5 days using smartphones.
 
-Meanwhile, brute-force scale took direct empirical hits. A 30,000-hour autonomous-driving study found the imitation scaling law breaks down exactly where it matters — in closed-loop driving. Another paper showed curating your dataset beats growing it. The moat isn't data volume anymore. It's data quality.
+Meanwhile, brute-force scale took direct empirical hits. A 30,000-hour autonomous-driving study found the imitation scaling law holds in open-loop testing but breaks down exactly where it matters — in closed-loop driving. Another paper showed curating your dataset beats growing it. The moat isn't data volume anymore. It's data quality.
 
 ## 4. Gaussian splatting quietly took over robot perception
 
-In 2024, NeRF was the assumed future of how robots represent the world. It lost before it ever became infrastructure — too slow, too hard to edit. 3D Gaussian splatting replaced it in a single conference cycle and now shows up everywhere: kilometer-scale SLAM, simulators rendering camera and LiDAR at 600+ FPS, even policies running inside a 60 Hz Gaussian digital twin that the real robot mirrors.
+Two years ago, NeRF was the assumed future of how robots represent the world. It lost before it ever became infrastructure — too slow, too hard to edit. At ICRA 2026, Gaussian-splatting papers outnumber NeRF papers roughly four to one (83 vs 23), and NeRF mostly appears as the baseline being beaten. The new representation shows up everywhere: kilometer-scale SLAM, simulators rendering LiDAR at 600+ FPS, even policies running inside a 60 Hz Gaussian digital twin that the real robot mirrors.
 
 You can tell it's settled because the papers are engineering papers now: pruning it for embedded compute, handling dynamic scenes, coupling it to physics. That's what a default looks like.
 
 ## 5. The classical-vs-learning war ended in a merger
 
-Reinforcement learning is the #2 topic of the entire conference (250 papers). And yet: a racecar held stable above 160 mph with zero learning. A GPU reimplementation of a classical solver beat the standard tool by up to 700%. A full-size humanoid walked in real time on plain model-predictive control, no policy network in sight.
+Reinforcement learning is the #2 topic of the entire conference (250 papers). And yet: a racecar held stable above 160 mph with zero learning. A GPU reimplementation of a classical solver beat the standard tools by up to 700% on single-rigid-body MPC. A full-size humanoid walked in real time on plain model-predictive control, no policy network in sight. An MCTS planner beat learned planners over 500+ public-road miles, and a symbolic-planning stack beat a fine-tuned VLA 95% to 34% — at roughly 100x less training energy. The retreat is sharpest in driving, where rule-based baselines keep beating learned planners under realistic traffic.
 
 The fastest-growing recipe isn't either side winning — it's learning inside structure. RL corrects a model-based controller's output. Safety certificates get baked into training instead of bolted on at runtime. Learned components propose; classical control disposes.
 
@@ -49,21 +49,21 @@ My favorite result of the entire conference: a model that hallucinates force sig
 The gaps say as much as the trends:
 
 - **Security.** Out of 2,951 papers, the ones treating robots as attack surfaces number in the single digits — including an internet-wide scan showing deployed ROS 2 robots are fingerprintable and exploitable in default configurations. Robots are shipping; security research isn't.
-- **Reproducibility.** One paper showed state-of-the-art localization results don't replicate run to run. Another ran 5,040 grasping trials across labs and watched algorithm rankings flip with lighting. Almost nobody checks whether their own numbers hold.
-- **Energy and cost.** Two papers metered what anything costs in joules or dollars. Two. In a field whose products have to pencil out.
-- And the stat I can't stop thinking about: **humanoids — the most-funded category in robotics — got 3.5% of the papers.** The capital is concentrated exactly where the research is thinnest.
+- **Reproducibility.** One paper showed state-of-the-art LiDAR-inertial odometry results don't replicate run to run. Another ran 5,040 grasping trials across labs and watched algorithm rankings flip with lighting. Almost nobody checks whether their own numbers hold.
+- **Energy and cost.** The papers that meter what anything costs in joules or dollars can be counted on one hand. In a field whose products have to pencil out.
+- And the stat I can't stop thinking about: **humanoids — widely reported as the most-funded category in robotics — got 3.5% of the papers.** The capital is concentrated exactly where the research is thinnest. (Meanwhile medical robotics, at 111 papers, is *bigger* than humanoids and quietly moving from perception toward closed-loop autonomous surgery — and almost nobody outside the field is talking about it.)
 
 ## The humanoid recipe, since that's where the money is
 
 For making a humanoid walk in 2026, the field has converged hard:
 
-Buy the platform — the Unitree G1 is the new default research robot. Get the actuator model right, because that, not the simulator, is the sim2real bottleneck. Retarget human motion and train massively parallel RL in simulation — and obsess over retargeting quality, not reward engineering (the best parkour result this year used five reward terms and no curriculum; it just fixed the data). Fold model-based control back in where it's stronger. And engineer for falling, not just against it — falls are now a skill robots train, complete with controlled-fall styles from Disney.
+Buy the platform — the Unitree G1 is the new default humanoid research platform. Get the actuator model right, because that, not the simulator, is the sim2real bottleneck. Retarget human motion and train massively parallel RL in simulation — and obsess over retargeting quality, not reward engineering (the standout parkour result this year used five reward terms and no curriculum; it just fixed the data). Fold model-based control back in where it's stronger. And engineer for falling, not just against it — falls are now a skill robots train, complete with controlled-fall styles from Disney.
 
 The demos got genuinely absurd: a humanoid sustained up to 106 consecutive table-tennis shots against a human opponent. The walking problem is converging. Which means the real problem — useful work — is about to take its place.
 
 ## What the companies revealed
 
-NVIDIA (24 papers, more than any other company) isn't building a robot — it's building the synthetic-data and training flywheel for everyone else's robots. Toyota is hedging across the entire spectrum, from millisecond classical control to video-diffusion data generation, and publishing unusually honest field-test failures. Huawei is quietly assembling a full embodied-AI stack, including a ~$14k open-source humanoid. The Chinese humanoid cluster — Galbot, Midea, ByteDance, Alibaba, Fourier — is publishing the stack layer by layer: hardware, data rigs, training recipes, in the open. And Meta and Microsoft are positioning consumer wearables as the data-acquisition layer for robotics.
+NVIDIA (24 papers, more than any other company) publishes both robot policies and — most tellingly — the synthetic-data and training infrastructure for everyone else's robots. Toyota is hedging across the entire spectrum, from millisecond classical control to video-diffusion data generation, and publishing detailed field-test failure analyses. Huawei is publishing across the whole embodied-AI surface — perception, manipulation, simulation, data — including backing a ~14k open bimanual humanoid with City University of Hong Kong. A cluster of Chinese robotics companies — Galbot, Midea, ByteDance, Alibaba, Fourier — is publishing the humanoid stack layer by layer: wrist and hand hardware, data-collection rigs, training recipes. Google DeepMind's quiet flex: a navigation foundation policy trained on crowd-sourced teleop and YouTube video, already deployed on robot fleets in six cities across three continents. And Meta and Microsoft are positioning wearables and in-the-wild human video as the data-acquisition layer for robotics.
 
 ---
 
@@ -75,6 +75,6 @@ The meta-trend underneath all six: robotics is leaving its demo era. The excitin
 
 Everything here is checkable:
 
-- **Source:** the official ICRA 2026 technical program, [ras.papercept.net](https://ras.papercept.net/conferences/conferences/ICRA26/program/), scraped June 11, 2026 (program last updated June 8). The 2,951 figure counts program entries — peer-reviewed contributed papers, journal papers (RA-L and similar) presented at the conference, 131 late-breaking results, and 36 award-session entries. The official acceptance count isn't published yet, so "papers" here means "presented in Vienna," not "accepted by ICRA."
-- **Method:** all keyword, affiliation, and co-occurrence counts are exact, computed directly over the full dataset. The qualitative trends come from 30 independent LLM passes, each reading ~98 full abstracts and returning structured findings, then synthesized against the exact counts. Every named result in this article was verified against its source abstract.
+- **Source:** the official ICRA 2026 technical program, [ras.papercept.net](https://ras.papercept.net/conferences/conferences/ICRA26/program/), scraped June 11, 2026 (program last updated June 8, per the page footer). The 2,951 figure counts program entries — peer-reviewed contributed papers, journal papers (RA-L and similar) presented at the conference, 131 late-breaking results, and 36 award-session entries. The official acceptance count isn't published yet, so "papers" here means "presented in Vienna," not "accepted by ICRA."
+- **Method:** all keyword, affiliation, and co-occurrence counts are exact, computed directly over the full dataset. The qualitative trends come from 30 independent LLM passes, each reading 98–99 full abstracts and returning structured findings, then synthesized against the exact counts. Every named result in this article was verified against its source abstract.
 - **Replicate it:** the dataset (`papers.json`/`papers.csv`), the scraper, the analysis pipeline, the 30 batch prompts, the raw batch reports, and the full trends brief with per-claim paper IDs are all at **[github.com/altanapps/icra-2026-trends](https://github.com/altanapps/icra-2026-trends)**.

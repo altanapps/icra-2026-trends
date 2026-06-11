@@ -42,8 +42,9 @@ peer-reviewed contributed papers, journal papers (RA-L and similar) presented at
 ## Replicating
 
 ```bash
-# 1. Re-download the program and rebuild the dataset
-#    (pages: ICRA26_ContentListWeb_3..5.html -> raw/day_3..5.html)
+# 1. Re-download the program and rebuild the dataset. Only three pages are
+#    needed: ICRA26_ContentListWeb_3..5.html (Tue/Wed/Thu) -> raw/day_3..5.html.
+#    The other raw/day_*.html files are peripheral pages the parser ignores.
 python3 parse_program.py
 
 # 2. Rebuild stats + batch prompts (deterministic, seed=26)
