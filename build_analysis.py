@@ -50,6 +50,27 @@ for p in papers:
         for c in comps:
             comp_count[c] += 1
 
+# Method mentions: papers whose title or abstract matches each pattern.
+# The PaperCept keyword taxonomy has no tags for these, so we count directly.
+METHOD_PATTERNS = {
+    "diffusion (any mention)": r"\bdiffusion\b",
+    "diffusion policy": r"diffusion[- ]based polic|diffusion polic",
+    "flow matching": r"flow[- ]matching|flow matching",
+    "VLA / vision-language-action": r"vision[- ]language[- ]action|\bVLA\b",
+    "LLM / large language model": r"\bLLMs?\b|large language model",
+    "model predictive control": r"model[- ]predictive|\bMPC\b",
+    "control barrier function": r"control barrier|CBF",
+    "teleoperation": r"teleoperat",
+    "human video / egocentric": r"human video|egocentric",
+    "imitation learning (text mention)": r"imitation learning",
+    "gaussian splatting": r"gaussian splat|3DGS",
+    "NeRF / neural radiance": r"NeRF|neural radiance",
+}
+method_mentions = {
+    name: sum(1 for p in papers if re.search(pat, p["title"] + " " + p["abstract"], re.I))
+    for name, pat in METHOD_PATTERNS.items()
+}
+
 os.makedirs(DIR / "analysis", exist_ok=True)
 stats = {
     "total_papers": len(papers),
@@ -57,6 +78,7 @@ stats = {
     "top_keywords": kw.most_common(40),
     "top_keyword_pairs": [[f"{a} + {b}", c] for (a, b), c in cooc.most_common(25)],
     "top_companies": comp_count.most_common(30),
+    "method_mentions": method_mentions,
 }
 json.dump(stats, open(DIR / "analysis" / "stats.json", "w"), indent=1, ensure_ascii=False)
 

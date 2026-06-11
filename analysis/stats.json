@@ -386,5 +386,19 @@
    "Bosch Center for Artificial Intelligence",
    3
   ]
- ]
+ ],
+ "method_mentions": {
+  "diffusion (any mention)": 173,
+  "diffusion policy": 55,
+  "flow matching": 28,
+  "VLA / vision-language-action": 70,
+  "LLM / large language model": 132,
+  "model predictive control": 149,
+  "control barrier function": 48,
+  "teleoperation": 96,
+  "human video / egocentric": 34,
+  "imitation learning (text mention)": 111,
+  "gaussian splatting": 83,
+  "NeRF / neural radiance": 23
+ }
 }
