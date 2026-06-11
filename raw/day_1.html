@@ -1,0 +1,589 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="viewport" content="width=device-width">
+<script type="text/javascript" src="https://ras.papercept.net/conferences/scripts/dom-drag.js"></script>
+<script src="jquery-1.11.1.min.js"></script>
+<title>ICRA 2026 Program | Sunday May 31, 2026</title>
+<style type=text/css>
+body, table, td, th{
+	Font-Family : sans-serif;
+	Font-Size : 10pt;
+}
+.r {text-align: right}
+.blue {color: #0000FF;}
+td {vertical-align: top; text-align: left}
+.c {text-align: center}
+table.s {
+	border-collapse:collapse;
+	border-width: 1px;
+}
+table.s td{
+	border-width: 1px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+table.t {
+	border-collapse: collapse;
+	border-width: 0px;
+}
+table.t td{
+	border-width: 0px;
+	padding: 4px;
+	border-style: solid;
+	border-color: gray;
+}
+.dots {
+    background:url('./images/dot.gif') repeat-x center;
+}
+.field {
+    background-color: #FFFFFF;
+}
+#pTitle { /* Page title */
+   font-size: 14pt;
+   line-height: 1.5em;
+}
+#pSubTitle { /* Page subtitle */
+   color: #909090;
+   font-size: 10pt; 
+   line-height: 1.5em;
+}
+#container {
+	position: absolute;
+	width: 100%;
+	margin-top: 2px;
+/*	overflow: hidden; */
+}
+
+.sHdr {   /* Session header Content list */
+   background-color: #F0E68C
+}
+      
+.sSHdr {   /* Subsession header Content list */
+   background-color: #f8f3c6 
+}
+      
+table.trk { /* Track table Content list */
+   border-collapse: collapse;
+   border-width: 0px;
+   margin: auto;
+/**   width: 640px; **/
+   width: 720px;
+}
+table.trk td{
+   border-width: 0px;
+   padding: 4px;
+   border-style: solid;
+   border-color: gray;
+ }
+      
+.pHdr {  /* Paper header Content list */
+   background-color: #E6E6FA;
+   color: black;
+}
+hr.thin { /* Horizontal rule content list */
+   border: 0px; 
+   height: .8px; 
+   background-color: #8888FF;
+}
+      
+.pTtl {  /* Paper title Content list */
+   font-size: 11pt;
+   font-style: italic;
+}
+      
+.ssHdr {  /* Subsession header container session Content list */
+   background-color: #DDDDDD;
+   color: black;
+}
+      
+.ssTtl {  /* Subsession title container session Content list */
+   font-size: 10pt;
+   font-style: normal;
+   font-weight: bold;
+}
+      
+</style>
+<script language="JavaScript">
+function initXMLHttp(){
+   var oRequest = false;
+   try {
+      oRequest = new XMLHttpRequest();
+   }  catch (trymicrosoft) {
+      try {
+         oRequest = new ActiveXObject("Msxml2.XMLHTTP");
+      }  catch (othermicrosoft) {
+         try {
+            oRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         }  catch (failed) {
+            oRequest = false;
+         }
+      }
+   }
+   if (!oRequest){
+      alert("Error initializing XMLHttpRequest! Your browser does not support AJAX");
+   }
+   return oRequest;
+}
+function modify(number,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'Add';
+   }
+   else{
+      action = 'Delete';
+   }
+   
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=523&' + action + number;
+//   window.open(url,'myprogrampage');
+
+   modifyItem("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","523",action,number)
+
+}
+
+
+function modifyItem(url,ConfID,action,number){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&Number=' + number;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+var iIntervalId;  // Global variable
+function modsession(id,kk){
+   var check = document.getElementById('mod' + kk).checked;
+   if (check){
+      action = 'AddSession';
+   }
+   else{
+      action = 'DelSession';
+   }
+
+//   url = 'https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=523&' + action + id;
+//   window.open(url,'myprogrampage');
+
+   modifySession("https://ras.papercept.net/conferences/scripts/myprogram_aja.pl","523",action,id)
+
+}
+
+function modifySession(url,ConfID,action,id){
+   var oRequest = initXMLHttp();
+   if (!oRequest){return;}
+   
+   // Send the request
+
+   oRequest.open("post",url, true);
+   var sParams = 'ConfID=' + ConfID + '&Action=' + action + '&ID=' + id;
+   document.body.style.cursor = 'wait';
+   oRequest.send(sParams);
+
+   // Process the response
+   
+   oRequest.onreadystatechange = function(){ 
+      if (oRequest && oRequest.readyState && oRequest.readyState == 4){
+         document.body.style.cursor = 'auto';
+         var responseText = oRequest.responseText;
+         if (responseText.substring(0,5) == 'Error'){
+            alert(responseText);
+         }
+         else{
+         
+//            alert(responseText);
+
+         }
+      }
+   } 
+}
+
+function getCookie(sName){
+   var sRE = "(?:; )?" + sName + "=([^;]*);?";   
+   var oRE = new RegExp(sRE);
+   if (oRE.test(document.cookie)){
+      return decodeURIComponent(RegExp["$1"]);}
+   else{
+      return null;
+   }
+}
+function loadprogram(){
+   var list = getCookie("ICRA26");
+   if (list){
+      var List = list.split(",");
+      for (var i=0; i<List.length; i++){
+         var names = document.getElementsByName('modify' + List[i]);
+         if (names.length){
+            for (var j=0; j<names.length; j++){
+               names[j].checked = true;
+            }
+         }
+      }
+   }
+}
+function reset(){
+
+   // Uncheck all modify and addsession checkboxes
+
+   var ins = document.getElementsByTagName('input');
+   for (var i=0; i<ins.length; i++){
+      if (ins[i].type == 'checkbox' && ins[i].id && ins[i].id.substring(0,3) == 'mod'){
+         ins[i].checked = false;
+      }
+   }
+   
+   // Reload the program
+   
+   loadprogram();
+}
+function startreset(){
+   iIntervalId = setInterval(reset,2000);
+}
+function viewAbstract(number){
+   var box = document.getElementById('Ab' + number);
+   if (box.style.display == 'block'){
+      box.style.display = 'none';
+   }
+   else if (box && box.style.display == 'none'){
+      box.style.display = 'block';
+   }
+}
+function openAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   var count = d.length;
+   if (count == 0){return;}
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab' && d[i].style.display == 'none'){
+         d[i].style.display = 'block';
+      }
+   }
+}
+function closeAllAbstracts(){
+   var d = document.getElementsByTagName('div');
+   for (var i=0; i<d.length; i++){
+      if (d[i].id && d[i].id.substring(0,2) == 'Ab'){
+         d[i].style.display = 'none';
+      }
+   }
+}
+var uhash;
+var pColor;
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+   
+      // Mark the session
+   
+      pColor = $('#' + uhash).parent().css('backgroundColor');
+      $('#' + uhash).parent().css('backgroundColor','#FF8888');
+   }
+});
+
+
+$(function() { 
+
+   // Check for URL hash
+
+   uhash = location.hash.substring(1);
+   if (uhash.slice(-1) == '_'){
+      uhash = null;
+   }
+   if (uhash){
+
+      // Set the widths
+      
+      setwidth();
+      
+      // If claasical view is required then return
+
+      if (!ghit){return;} 
+      
+      // Reset left margin for FF
+
+      document.getElementById('container').scrollLeft = 0;;
+
+      // Discover the table and the block and determine the block Id
+   
+      var rt = $('#' + uhash);
+      var done = false;
+      while (!done){
+         rt = rt.parent();    
+         var etype = rt.get(0).tagName;  
+         if (rt.is("table")){      
+            done = true;
+         }
+      }
+      rt = rt.parent().parent().parent();
+      var iid = rt.attr('id')
+
+      // Show the block
+
+      initialize();
+      $('#' + iid).show();
+      $( '#A' + iid ).focus();
+      var ypos = $('#' + iid).offset().top;      
+      window.scrollTo(0,ypos);
+
+      // Cancel the scroll to uhash
+
+      var url = location.href;
+      url += '_';
+      location.href = url;
+      
+      // Scroll into view
+
+      var leftPosition = $('#' + uhash).parent().position().left;
+      var topOffset = $('#' + uhash).parent().offset().top;
+      var divOffset = $('#' + iid).find('div').offset().top;
+      var topPosition = topOffset-divOffset;
+      $('#' + iid).find('div').scrollLeft(leftPosition);
+      $('#' + iid).find('div').scrollTop(topPosition);
+   }
+   else{
+      setwidth();
+      initialize();
+   }
+});
+
+var ghit = false;
+function setwidth(){
+   var viewportwidth = $( window ).width();
+   var viewportheight = $( window ).height();
+   var sdiv = $( ".sdiv" );
+   for (var i=0; i<sdiv.length; i++){
+      $(sdiv[i]).css({width: .98*viewportwidth + 'px'});
+      $(sdiv[i]).css("height", .9*viewportheight-50 + 'px');      
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth){
+            ghit = true;
+            break;
+         }
+      }
+   }
+   if (!ghit){
+      for (var i=0; i<divs.length; i++){
+         divs[i].style.height = 'auto';
+      }
+   }
+}
+
+function selfollowing(hsh){
+   $('#' + uhash).parent().css('backgroundColor',pColor);
+   setwidth();
+   initialize();
+   if (hsh == 'TheTop'){
+      var ypos = $('#container').offset().top;
+      window.scrollTo(0,ypos)
+   }
+   else{
+      $('#' + hsh).show();
+      $( '#A' + hsh ).focus();
+      var ypos = $('#' + hsh).offset().top;
+      window.scrollTo(0,ypos)
+   }
+}
+
+function initialize(){
+
+   // Show all day blocks
+   
+   var blcks = $('.blck');
+   for (var i=0; i<blcks.length; i++){
+      blcks[i].style.display = 'block';
+   }
+
+   // Detect horizontal overflow on any of the divs
+   
+   var hit = false;
+   var divs = document.getElementsByTagName('div');
+   for (var i=0; i<divs.length; i++){
+      if (divs[i].id && divs[i].id.substring(0,3) == 'div'){
+         if (divs[i].scrollWidth > divs[i].clientWidth || divs[i].scrollHeight > divs[i].clientHeight){
+            hit = true;
+            break;
+         }
+      }
+   }
+   if (hit){
+   
+      // Set overflow hidden on body. This will prevent it from scrolling
+      
+      $("body").css("overflow", "hidden");
+      document.getElementById('start').style.display = 'inline';
+      
+      // Hide all day blocks
+   
+      var blcks = $('.blck');
+      for (var i=0; i<blcks.length; i++){
+         blcks[i].style.display = 'none';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.show();
+      }
+   }
+   else{
+      $("body").css("overflow", "auto");
+      document.getElementById('start').style.display = 'none';
+      var blcks = $('.sdiv');
+      for (var i=0; i<blcks.length; i++){
+        blcks[i].style.height = 'auto';
+      }
+      var scrlis = $('.scrlis');
+      for (var i=0; i<scrlis.length; i++){
+         scrlis.hide();
+      }
+   }
+   return;
+}
+
+
+</script>
+</head>
+
+<body onload="loadprogram(); startreset()" onresize="setwidth(); initialize()">
+
+<form name="myprogram" action="https://ras.papercept.net/conferences/scripts/myprogram.pl">
+
+<div id="container">
+
+
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="100%" height="140" width="100%" style="background-image: url(/images/icra/icra26_bg.webp);
+background-position: center;background-repeat: no-repeat;background-size: cover;" nowrap>
+<img src="/images/icra/icra26.webp" style="position:absolute;top:0px;margin:0;left:50%;margin-right:-50%;
+transform:translate(-50%, 0%);" alt="">
+<img src="/images/icra/icra26_logo.webp" height="80" BORDER="0" ALT="" align="left" style="position:absolute;left:10px;top:10px;">
+<span style="font-size: 16px; font-family: Arial, sans serif; color: #FFF;
+position: absolute; left: 10px; top: 100px;">
+<strong>
+2026 IEEE International Conference on Robotics & Automation
+</strong>
+</span>
+<span style="font-size: 16px; font-family: Arial, sans serif; color: #FFF;
+position: absolute; left: 10px; top: 120px;z-index:1;">
+<strong>
+June 1-5, Vienna, Austria
+</strong>
+</span>
+</td></tr>
+</table>
+<table width="100%" height="80%" border="0" cellspacing="0" cellpadding="0">
+<tr><td width=5 height="100%" style="background-color:#CF233A;">&nbsp;</td><td width=5>&nbsp;&nbsp;</td>
+<td height="100%" width="100%" valign="top"><br>
+
+
+<div class="c" id="TheTop">
+<span id="pTitle"><a href="http://2026.ieee-icra.org" target="_blank"><b>2026 IEEE International Conference on Robotics and Automation (ICRA)</b></a><br></span>
+<span id="pSubTitle"><b>June 1-5, 2026, Vienna, Austria</b></span><br><br>
+
+</div>
+
+<div class="c" style="position: relative">
+<a href=ICRA26_ProgramAtAGlanceWeb.html>Program at a Glance</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_1.html>Sunday</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_2.html>Monday</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_3.html>Tuesday</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_4.html>Wednesday</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_5.html>Thursday</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=ICRA26_ContentListWeb_6.html>Friday</a>&nbsp;&nbsp;&nbsp;&nbsp<a href=ICRA26_AuthorIndexWeb.html>Author Index</a>&nbsp;&nbsp;&nbsp;&nbsp<a href=ICRA26_KeywordIndexWeb.html>Keyword Index</a>&nbsp;&nbsp&nbsp;&nbsp;<a href="#TheTop" onclick="window.open('https://ras.papercept.net/conferences/scripts/myprogram.pl?ConfID=523','myprogrampage')">My Program</a>&nbsp;&nbsp;
+</div>
+
+<div class="c">
+<p style="color: gray">Last updated on June 8, 2026. This conference program is tentative and subject to change
+</div>
+<div class="c">
+<h3>Technical Program for Sunday May 31, 2026</h3>
+</div>
+<p class="c"></p>
+<div class="c">
+
+                  <span style="color:gray ">To show or hide the keywords and abstract (text summary) of a paper (if available), click on the paper title</span><br>
+                  <a href="javascript:openAllAbstracts()" title="Click to open all abstracts">Open all abstracts</a>&nbsp;&nbsp;
+                  <a href="javascript:closeAllAbstracts()" title="Click to close all abstracts">Close all abstracts</a>
+               
+</div>
+
+<div class="c">
+<table class="trk">
+
+                  <tr><td colspan="2">&nbsp;</td></tr>
+                  <tr class="sHdr">
+                     <td nowrap><a name="sua1"><b>SuA1</b>&nbsp; Dinner, Rathauskeller</td>
+                     <td class="r" nowrap>Add to My Program&nbsp;<input id="mod1" type="checkbox" name="modifySuA1" value="ON" onclick="modsession(15,1)"></td>
+                  </tr>
+               
+                  <tr class="sHdr">
+                     <td nowrap><a href="ICRA26_ProgramAtAGlanceWeb.html#sua1" title="Click to go to the Program at a Glance"><b>TEABxSAC Dinner</b></a></td>
+                     <td>&nbsp;</td>
+                  </tr>
+                  <tr class="sHdr"><td colspan="2" style="line-height: 0pt">&nbsp;</td></tr>
+               
+
+
+</table>
+</div>
+
+<p>&nbsp;<br>&nbsp;</p><p>&nbsp;<br>&nbsp;</p>
+
+</td><td width=5 height="100%" style="background-color:#CF233A;">&nbsp;</td></tr>
+<tr>
+<td colspan=4 width="100%" height="8" style="background-color:#CF233A;" BORDER="0" ALT="" valign="center">
+<p align="center"><span style="font-size:8pt;line-height:10pt;color:black;">Technical Content &copy;
+IEEE Robotics & Automation Society</span> </p></td>
+</tr>
+<tr>
+<td colspan=4 width="100%"><p align="right"><span
+style="font-size:8pt;line-height:10pt;color:#666699;"style="text-decoration:none;">
+<img src="/images/pc_logo_small.png" border="0" align="right" style="margin-left: 10px; margin-right: 10px">This site is protected
+by copyright and trademark laws under US and International law.<br>All rights
+reserved. &copy; 2002-2026 PaperCept, Inc.<br>
+Page generated 2026-06-08&nbsp;&nbsp;01:22:01 PST &nbsp;<a href="" onclick="window.open('/conferences/scripts/about.pl','tc','width=1000,scrollbars=yes'); return false">Terms
+of use</a>
+</span></p></td>
+</tr>
+</table>
+</body>
+
+
+</div>
+
+</form>
+
+
+
+
+</body>
+
+</html>

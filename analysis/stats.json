@@ -1,0 +1,390 @@
+{
+ "total_papers": 2951,
+ "papers_with_company_affiliation": 311,
+ "top_keywords": [
+  [
+   "Deep Learning for Visual Perception",
+   253
+  ],
+  [
+   "Reinforcement Learning",
+   250
+  ],
+  [
+   "Motion and Path Planning",
+   229
+  ],
+  [
+   "Imitation Learning",
+   196
+  ],
+  [
+   "Localization",
+   163
+  ],
+  [
+   "Deep Learning in Grasping and Manipulation",
+   143
+  ],
+  [
+   "Deep Learning Methods",
+   139
+  ],
+  [
+   "SLAM",
+   132
+  ],
+  [
+   "Learning from Demonstration",
+   131
+  ],
+  [
+   "Optimization and Optimal Control",
+   127
+  ],
+  [
+   "Multi-Robot Systems",
+   124
+  ],
+  [
+   "Machine Learning for Robot Control",
+   120
+  ],
+  [
+   "Mapping",
+   115
+  ],
+  [
+   "Semantic Scene Understanding",
+   111
+  ],
+  [
+   "Medical Robots and Systems",
+   111
+  ],
+  [
+   "Vision-Based Navigation",
+   107
+  ],
+  [
+   "Autonomous Vehicle Navigation",
+   106
+  ],
+  [
+   "Perception for Grasping and Manipulation",
+   105
+  ],
+  [
+   "Legged Robots",
+   104
+  ],
+  [
+   "Collision Avoidance",
+   103
+  ],
+  [
+   "Field Robots",
+   100
+  ],
+  [
+   "Computer Vision for Automation",
+   98
+  ],
+  [
+   "Sensor Fusion",
+   97
+  ],
+  [
+   "Aerial Systems: Applications",
+   92
+  ],
+  [
+   "Visual Learning",
+   86
+  ],
+  [
+   "Force and Tactile Sensing",
+   86
+  ],
+  [
+   "Intelligent Transportation Systems",
+   84
+  ],
+  [
+   "Object Detection, Segmentation and Categorization",
+   82
+  ],
+  [
+   "AI-Based Methods",
+   78
+  ],
+  [
+   "Mechanism Design",
+   77
+  ],
+  [
+   "RGB-D Perception",
+   75
+  ],
+  [
+   "Dexterous Manipulation",
+   74
+  ],
+  [
+   "Aerial Systems: Perception and Autonomy",
+   73
+  ],
+  [
+   "Computer Vision for Transportation",
+   73
+  ],
+  [
+   "Marine Robotics",
+   71
+  ],
+  [
+   "AI-Enabled Robotics",
+   70
+  ],
+  [
+   "Motion Control",
+   67
+  ],
+  [
+   "Planning under Uncertainty",
+   67
+  ],
+  [
+   "Grasping",
+   66
+  ],
+  [
+   "Task and Motion Planning",
+   65
+  ]
+ ],
+ "top_keyword_pairs": [
+  [
+   "Localization + SLAM",
+   59
+  ],
+  [
+   "Imitation Learning + Learning from Demonstration",
+   56
+  ],
+  [
+   "Deep Learning in Grasping and Manipulation + Imitation Learning",
+   47
+  ],
+  [
+   "Mapping + SLAM",
+   45
+  ],
+  [
+   "Deep Learning for Visual Perception + Visual Learning",
+   41
+  ],
+  [
+   "Collision Avoidance + Motion and Path Planning",
+   38
+  ],
+  [
+   "Legged Robots + Reinforcement Learning",
+   38
+  ],
+  [
+   "Localization + Mapping",
+   37
+  ],
+  [
+   "Machine Learning for Robot Control + Reinforcement Learning",
+   36
+  ],
+  [
+   "Computer Vision for Transportation + Deep Learning for Visual Perception",
+   34
+  ],
+  [
+   "Computer Vision for Automation + Deep Learning for Visual Perception",
+   32
+  ],
+  [
+   "Autonomous Vehicle Navigation + Motion and Path Planning",
+   30
+  ],
+  [
+   "Humanoid and Bipedal Locomotion + Reinforcement Learning",
+   28
+  ],
+  [
+   "Deep Learning for Visual Perception + Object Detection, Segmentation and Categorization",
+   24
+  ],
+  [
+   "Deep Learning for Visual Perception + RGB-D Perception",
+   24
+  ],
+  [
+   "Deep Learning for Visual Perception + Localization",
+   24
+  ],
+  [
+   "Deep Learning in Grasping and Manipulation + Perception for Grasping and Manipulation",
+   24
+  ],
+  [
+   "Aerial Systems: Applications + Aerial Systems: Mechanics and Control",
+   23
+  ],
+  [
+   "Deep Learning for Visual Perception + Semantic Scene Understanding",
+   23
+  ],
+  [
+   "Deep Learning in Grasping and Manipulation + Learning from Demonstration",
+   22
+  ],
+  [
+   "Motion and Path Planning + Reinforcement Learning",
+   21
+  ],
+  [
+   "Deep Learning for Visual Perception + Recognition",
+   20
+  ],
+  [
+   "Cooperating Robots + Multi-Robot Systems",
+   20
+  ],
+  [
+   "Aerial Systems: Applications + Aerial Systems: Perception and Autonomy",
+   20
+  ],
+  [
+   "Computer Vision for Medical Robotics + Medical Robots and Systems",
+   20
+  ]
+ ],
+ "top_companies": [
+  [
+   "NVIDIA",
+   24
+  ],
+  [
+   "Toyota Research Institute",
+   14
+  ],
+  [
+   "Amazon",
+   10
+  ],
+  [
+   "Huawei",
+   9
+  ],
+  [
+   "Mitsubishi Electric Research Laboratories",
+   9
+  ],
+  [
+   "Tencent",
+   7
+  ],
+  [
+   "Noah's Ark Lab, Huawei Technologies",
+   6
+  ],
+  [
+   "Hyundai Motor Company",
+   5
+  ],
+  [
+   "Alibaba DAMO Academy",
+   5
+  ],
+  [
+   "Huawei Technologies",
+   5
+  ],
+  [
+   "Huawei Noah's Ark Lab",
+   5
+  ],
+  [
+   "Huawei Technologies Canada",
+   5
+  ],
+  [
+   "Samsung Research America",
+   4
+  ],
+  [
+   "Beijing Galbot Co., Ltd",
+   4
+  ],
+  [
+   "Horizon Robotics",
+   4
+  ],
+  [
+   "Amazon Robotics",
+   4
+  ],
+  [
+   "Bosch",
+   4
+  ],
+  [
+   "Boston Dynamics AI Institute",
+   4
+  ],
+  [
+   "Google DeepMind",
+   4
+  ],
+  [
+   "Waymo",
+   4
+  ],
+  [
+   "Li Auto Inc",
+   4
+  ],
+  [
+   "ByteDance Inc",
+   3
+  ],
+  [
+   "Honda Research Institute, USA",
+   3
+  ],
+  [
+   "Disney Research",
+   3
+  ],
+  [
+   "Xiaomi",
+   3
+  ],
+  [
+   "Honda Research Institute Europe",
+   3
+  ],
+  [
+   "Honda Research Institute USA",
+   3
+  ],
+  [
+   "Bytedance",
+   3
+  ],
+  [
+   "Carl Zeiss AG",
+   3
+  ],
+  [
+   "Bosch Center for Artificial Intelligence",
+   3
+  ]
+ ]
+}
